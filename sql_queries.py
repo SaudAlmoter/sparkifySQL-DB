@@ -98,9 +98,9 @@ VALUES (%s, %s, %s, %s, %s, %s, %s) ON CONFLICT DO NOTHING;
 song_select = ("""
 SELECT s.song_id, s.artist_id FROM songs s 
 JOIN artists a on s.artist_id = a.artist_id
-WHERE ss.title = %s
-AND ars.name = %s
-AND ss.duration = %s
+WHERE s.title = %s
+AND a.name = %s
+AND s.duration = %s
 ;
 """)
 
