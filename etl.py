@@ -6,7 +6,14 @@ from sql_queries import insert_table_queries, song_select
 
 
 def process_song_file(cur, filepath):
-    
+
+    """
+    This method starts by reading the file that is passed with the file
+    curser of the database connection. 
+    Then it execute the insert queries of the song and artist tables 
+
+    ** I took the sql statements from the sql_queries.py file **
+    """
     df = pd.read_json(filepath, lines=True)
 
     song_data = df[["song_id", "title", "artist_id", \
@@ -19,6 +26,15 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+
+    """
+    This method starts by reading the file that is passed with the file
+    curser of the database connection. 
+
+    Then it execute the insert queries of the time and user tables 
+
+    ** I took the sql statements from the sql_queries.py file **
+    """
     df = pd.read_json(filepath, lines=True)
 
     df =  df[(df['page'] == 'NextSong')]
@@ -39,6 +55,12 @@ def process_log_file(cur, filepath):
     for i, row in user_df.iterrows():
         cur.execute(insert_table_queries[3], row)
 
+    """
+    Then it execute the select query of the song and artist tables 
+    and insert into the songplays table
+
+    ** I took the sql statements from the sql_queries.py file **
+    """
     # insert songplay records
     for index, row in df.iterrows():
         
