@@ -14,7 +14,7 @@ def process_song_file(cur, filepath):
     cur.execute(insert_table_queries[0], song_data)
     
     artist_data = df[["artist_id", "artist_name", "artist_location",\
-        "artist_latitude", "artist_longitude"]].values[0].tolist()
+     "artist_latitude", "artist_longitude"]].values[0].tolist()
     cur.execute(insert_table_queries[1], artist_data)
 
 
